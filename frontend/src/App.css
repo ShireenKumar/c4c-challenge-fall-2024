@@ -53,3 +53,12 @@ h1.title {
 .partner-info {
   font-size: 0.9em;
 }
+
+.true-color {
+  color: green;
+}
+
+.false-color {
+  color: gray;
+}
+

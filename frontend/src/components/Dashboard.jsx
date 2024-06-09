@@ -8,6 +8,7 @@ import PartnerTile from './PartnerTile';
 function Dashboard() {
 
   const [partners, setPartners] = useState({});
+  
 
   // Load all partners on initial page load 
   useEffect(() => {
@@ -15,12 +16,21 @@ function Dashboard() {
       method: 'GET',
     })
     .then((res) => res.json())
+    .then((data) => {
+      // Set the parsed data into the partners state
+      setPartners(data);
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
   }, [])
 
   return (
     <div id="main-content">
       <div id="main-partners-grid">
-        <PartnerTile partnerData={{}} />
+        {Object.keys(partners).map(partnerKey => (
+          <PartnerTile key={partnerKey} partnerData={partners[partnerKey]} />
+        ))}
       </div>
     </div>
   )
