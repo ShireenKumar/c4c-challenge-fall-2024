@@ -32,6 +32,7 @@ function Dashboard() {
           <PartnerTile key={partnerKey} partnerData={partners[partnerKey]} />
         ))}
       </div>
+
     </div>
   )
 }
