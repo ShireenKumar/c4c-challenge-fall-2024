@@ -5,7 +5,7 @@ import React from 'react';
   along with any tools to manage said information
 */
 
-function PartnerTile({ partnerData }) {
+function PartnerTile({ partnerData, onDelete }) {
   const activeColor = partnerData.active ? 'true-color' : 'false-color';
   return (
     <div className="partner-tile">
@@ -17,8 +17,7 @@ function PartnerTile({ partnerData }) {
           {partnerData.active ? 'Active' : 'Inactive'}
         </p>
         <p>{partnerData.description}</p>
-      
-      
+        <button onClick={onDelete}>Delete</button>
       </div>
     </div>
   )

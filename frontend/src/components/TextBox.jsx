@@ -11,7 +11,8 @@ function TextBox() {
         name: '',
         description: '',
         logoUrl: '',
-        isActive: null
+        isActive: null,
+        delete: false
 
     });
 
@@ -44,7 +45,8 @@ function TextBox() {
                 thumbnailUrl: formData.logoUrl,
                 name: formData.name,
                 description: formData.description,
-                active: formData.isActive
+                active: formData.isActive,
+                delete: false
             })
         })
         .then((res) => res.json())
@@ -56,9 +58,24 @@ function TextBox() {
                 [newPartnerKey]: data.partner
             });
             // Clear the form
-            setFormData({ name: '', description: '', logoUrl: '', isActive: null });
+            setFormData({ name: '', description: '', logoUrl: '', isActive: null, delete: false });
         })
         .catch((error) => console.error('Error adding partner:', error));
+    };
+
+    const handleDelete = (partnerKey) => {
+        fetch(`http://localhost:4000/delete-partner/${partnerKey}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        const newPartners = { ...partners };
+        delete newPartners[partnerKey];
+        setPartners(newPartners);
+    })
+    .catch(error => {
+        console.error('Error deleting partner:', error);
+    });
+        
     };
 
     return (
@@ -107,10 +124,18 @@ function TextBox() {
             </form>
             
 
-                {Object.keys(partners).map(partnerKey => (
-                    <PartnerTile key={partnerKey} partnerData={partners[partnerKey]} />
-                ))}
-                
+            {Object.keys(partners).map(partnerKey => {
+                    if (partners[partnerKey].delete) {
+                        return null; // Skip creating the PartnerTile if the partner is deleted
+                    }
+                    return (
+                        <PartnerTile 
+                            key={partnerKey} 
+                            partnerData={partners[partnerKey]} 
+                            onDelete={() => handleDelete(partnerKey)}
+                        />
+                    );
+                })}
             </div>
         </div>
     );

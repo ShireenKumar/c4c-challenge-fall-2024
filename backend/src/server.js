@@ -42,6 +42,18 @@ app.post('/add-partner', (req, res) => {
   res.status(201).send({ message: 'Partner added successfully', partner: partners[newPartnerKey] });
 })
 
+// POST route to add a new partner
+app.delete('/delete-partner/:partnerKey', (req, res) => {
+  const partnerKeyToDelete = req.params.partnerKey;
+  // Check if the partner to delete exists
+  if (partners.hasOwnProperty(partnerKeyToDelete)) {
+      delete partners[partnerKeyToDelete];
+      res.status(200).send({ message: 'Partner deleted successfully' });
+  } else {
+      res.status(404).send({ message: 'Partner not found' });
+  }
+});
+
 // Start the backend
 app.listen(port, () => {
   console.log(`Express server starting on port ${port}!`);
