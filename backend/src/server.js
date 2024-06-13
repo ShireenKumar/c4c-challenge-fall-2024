@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
   res.status(200).send(partners);
 })
 
-// POST route to add a new partner
+// POST 
 app.post('/add-partner', (req, res) => {
   const newPartner = req.body;
   const newPartnerKey = newPartner.name;

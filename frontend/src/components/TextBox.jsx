@@ -16,6 +16,8 @@ function TextBox() {
 
     });
 
+    const [showAdd, setShowAdd] = useState(false);
+
     useEffect(() => {
         fetch('http://localhost:4000', {
             method: 'GET',
@@ -59,6 +61,7 @@ function TextBox() {
             });
             // Clear the form
             setFormData({ name: '', description: '', logoUrl: '', isActive: null, delete: false });
+            setShowAdd(false);
         })
         .catch((error) => console.error('Error adding partner:', error));
     };
@@ -77,12 +80,26 @@ function TextBox() {
     });
         
     };
+    
 
     return (
+        
         <div id="main-content">
-            <div id="main-partners-grid">
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Name:</label>
+            <center>
+            <div id ="up">
+            <button 
+             style={{ backgroundColor: 'lightgreen', color: 'black', padding: '5px 20px', borderRadius: '4px', cursor: 'pointer'}}
+           onClick={() => setShowAdd(!showAdd)}
+           className="button" >Add Partner Info
+            </button>
+            </div>
+            </center>
+            {showAdd && (
+            <div id="button">
+            <form onSubmit={handleSubmit} id="grid-container">
+            <div id = "grid-item"> 
+           
+                <label htmlFor="name">Partner name</label>
                 <input
                     type="text"
                     id="name"
@@ -90,18 +107,22 @@ function TextBox() {
                     value={formData.name}
                     onChange={handleInputChange}
                 />
+                </div>
                 <br />
-
-                <label htmlFor="description">Description:</label>
-                <textarea
+                
+                <div id = "item1"> 
+                <label htmlFor="description">Partner description</label>
+                <input
                     id="description"
                     name="description"
                     value={formData.description}
                     onChange={handleInputChange}
-                ></textarea>
+                ></input>
+                </div>
                 <br />
 
-                <label htmlFor="logoUrl">Logo URL:</label>
+                <div id = "grid-item">
+                <label htmlFor="logoUrl">Partner Logo Source</label>
                 <input
                     type="text"
                     id="logoUrl"
@@ -109,8 +130,11 @@ function TextBox() {
                     value={formData.logoUrl}
                     onChange={handleInputChange}
                 />
+                </div>
                 <br />
-                <label htmlFor="isActive">Active:</label>
+                <div id = "item4">
+                <label htmlFor="isActive">Active?</label>
+               
                     <input
                         type="checkbox"
                         id="isActive"
@@ -119,14 +143,24 @@ function TextBox() {
                         onChange={handleInputChange}
                     />
                     <br />
-
-                <button type="submit">Submit</button>
-            </form>
+                    
             
-
+               <p></p>
+              
+                <div id="left">
+                <button type="submit" style={{ backgroundColor: 'lightgreen', color: 'black', padding: '5px 20px', borderRadius: '4px', cursor: 'pointer' }}>
+                    Submit
+                    </button>
+                </div>
+                </div>
+            </form>
+            </div>
+            )}
+            <div id="main-partners-grid">
             {Object.keys(partners).map(partnerKey => {
+                // Skip creating the PartnerTile if the partner is deleted
                     if (partners[partnerKey].delete) {
-                        return null; // Skip creating the PartnerTile if the partner is deleted
+                        return null; 
                     }
                     return (
                         <PartnerTile 

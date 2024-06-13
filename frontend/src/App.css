@@ -6,6 +6,7 @@
 
 /* MainDisplay */
 
+
 #main-content {
   width: 1000px;
   padding: 20px 30px;
@@ -21,6 +22,7 @@
   gap: 25px;
 }
 
+
 #textBox{
   display: flex;
   justify-content: center;
@@ -30,6 +32,101 @@
   gap: 10px;
 }
 
+#text{
+  width: 100%;
+  padding: 0.5em;
+  box-sizing: border-box;
+}
+
+#groupOfButtons {
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: 8ch auto;
+} 
+
+#grid-item {
+  font-size: 15px;
+  text-align: right;
+}
+
+#grid-container {
+  display: grid;
+  column-gap: 5px;
+  grid-template-columns: auto auto auto auto;
+  padding: 10px;
+}
+
+
+#checkbox {
+  margin-top: -0.2em;
+  margin-right: 2.5em;
+}
+
+#submit-button {
+  grid-column: span 2;
+  justify-self: center;
+  padding: 0.5rem 1rem;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#item1 {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+label,input{
+  display:flex;
+  flex-direction:column;
+  margin-right: 3em;
+  text-align: left;
+}
+
+#left {
+  margin: 0;
+  position: absolute;
+  margin-left: -12em;
+  margin-top: -1em;
+}
+
+#up {
+  margin: 0;
+  position: absolute;
+  margin-top: -2em;
+  margin-left: 25em;
+}
+
+#item4 {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+
+#textPosition{
+  position: relative; 
+  top: -20px; /* Adjust the value as needed */ 
+
+}
+
+#button {
+  border: 2px solid #000; /* Black border */
+  padding: 10px; /* Space inside the box */
+  background-color: #ffffff; /* Background color of the box */
+  color: #000000; /* Text color */
+  text-align: center; /* Center the text inside the box */
+  width: fit-content; /* Fit the box width to its content */
+  margin: 0 auto; /* Center the box horizontally */
+  display: block; /* Ensure the box behaves as a block-level element */
+  font-size: 16px; /* Font size */
+  border-radius: 10px; /* Rounded corners */
+}
 h1.title {
   text-align: center;
   font-size: 24pt;
