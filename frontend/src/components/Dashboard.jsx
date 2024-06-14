@@ -5,7 +5,7 @@ import PartnerTile from './PartnerTile';
   The top-level component containing everything relevant to the dashboard,
   including information on each partner
 */
-function TextBox() {
+function Dashboard() {
     const [partners, setPartners] = useState({});
     const [formData, setFormData] = useState({
         name: '',
@@ -175,4 +175,4 @@ function TextBox() {
     );
 }
 
-export default TextBox;
+export default Dashboard;
