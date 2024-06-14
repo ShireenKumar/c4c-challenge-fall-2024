@@ -21,7 +21,7 @@ git clone https://github.com/huang0h/c4c-challenge-fall-2024.git
     
     4a. The backend will be available at `http://localhost:4000`
 
-## READ.ME
+## README
 Instructions: In the VS Code terminal run 'npm install' then 'npm run dev'. From there click 'http://localhost:3000' to view the website
 
 
@@ -39,7 +39,7 @@ In Dashboard.jsx there are three constants that use the useState function, one h
 
 App.css is used to style and formate the input functions and all of the partner organizations.
 
-○ Did you learn anything from this project? If so, how might you have done this
+● Did you learn anything from this project? If so, how might you have done this
 differently knowing what you know now?
 
 I got a deeper understanding of coding through HTML, CSS, React, and Java Script. I also learned more about APIs and JSONs. I ran into issues with formatting which was fixed through trial and error. I also had trouble organizing code but it was resolved through research. 
