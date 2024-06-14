@@ -42,11 +42,12 @@ app.post('/add-partner', (req, res) => {
   res.status(201).send({ message: 'Partner added successfully', partner: partners[newPartnerKey] });
 })
 
-// POST route to add a new partner
+// POST route to delete a partner
 app.delete('/delete-partner/:partnerKey', (req, res) => {
   const partnerKeyToDelete = req.params.partnerKey;
   // Check if the partner to delete exists
   if (partners.hasOwnProperty(partnerKeyToDelete)) {
+    // actually delete the partner
       delete partners[partnerKeyToDelete];
       res.status(200).send({ message: 'Partner deleted successfully' });
   } else {
