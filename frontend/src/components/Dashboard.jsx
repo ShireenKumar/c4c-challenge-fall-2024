@@ -6,7 +6,10 @@ import PartnerTile from './PartnerTile';
   including information on each partner
 */
 function Dashboard() {
+    // Constant used to set and get partners 
     const [partners, setPartners] = useState({});
+
+    // Constant to complete the form data (input to add new partner)
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -16,8 +19,10 @@ function Dashboard() {
 
     });
 
+    // Constant used to show the input menu
     const [showAdd, setShowAdd] = useState(false);
 
+    // Gets the data from the URL, such as pre-existing partner data
     useEffect(() => {
         fetch('http://localhost:4000', {
             method: 'GET',
@@ -27,6 +32,7 @@ function Dashboard() {
         .catch((error) => console.error('Error fetching data:', error));
     }, []);
 
+    // Gets the data that is inputed and formats it with a name and corresponding data 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({
@@ -36,6 +42,7 @@ function Dashboard() {
     
     };
 
+    // Calls the post method and formats the data inputted and adds it to the JSON
     const handleSubmit = (event) => {
         event.preventDefault();
         fetch('http://localhost:4000/add-partner', {
@@ -59,13 +66,14 @@ function Dashboard() {
                 ...partners,
                 [newPartnerKey]: data.partner
             });
-            // Clear the form
+            // Clears the form once the data is submitted
             setFormData({ name: '', description: '', logoUrl: '', isActive: null, delete: false });
             setShowAdd(false);
         })
         .catch((error) => console.error('Error adding partner:', error));
     };
 
+    // Calls the delete request and passes in the partnerKey 
     const handleDelete = (partnerKey) => {
         fetch(`http://localhost:4000/delete-partner/${partnerKey}`, {
         method: 'DELETE',
@@ -83,7 +91,7 @@ function Dashboard() {
     
 
     return (
-        
+        // Creates the input text boxes and check boxes and calls either handleSubmit or handleInputChange 
         <div id="main-content">
             <center>
             <div id ="up">
@@ -156,13 +164,17 @@ function Dashboard() {
             </form>
             </div>
             )}
+
+            
             <div id="main-partners-grid">
+            
             {Object.keys(partners).map(partnerKey => {
                 // Skip creating the PartnerTile if the partner is deleted
                     if (partners[partnerKey].delete) {
                         return null; 
                     }
                     return (
+                        // Passes each of the partners through PartnerTiles to be properly formatted
                         <PartnerTile 
                             key={partnerKey} 
                             partnerData={partners[partnerKey]} 
