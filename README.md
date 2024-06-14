@@ -22,7 +22,7 @@ git clone https://github.com/huang0h/c4c-challenge-fall-2024.git
     4a. The backend will be available at `http://localhost:4000`
 
 ## READ.ME
-Instructions: In terminal run 'npm install' then 'npm run dev'. From there click 'http://localhost:3000' to view the website
+Instructions: In the VS Code terminal run 'npm install' then 'npm run dev'. From there click 'http://localhost:3000' to view the website
 
 
 ● A high-level overview of the application
